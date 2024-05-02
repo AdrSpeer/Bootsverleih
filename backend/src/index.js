@@ -2,10 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { body, param, validationResult } from "express-validator";
-
-import { Boat } from "./models/Boats.js";
 import { Reservation } from "./models/Reservations.js";
 import { connectToDatabase } from "./models/connectDb.js";
+import { BoatService, ReservationService } from "./services/index.js";
 
 const app = express();
 
@@ -16,7 +15,7 @@ app.use(express.json());
 //* Endpoints Boats
 // GET all boats
 app.get("/api/v1/boats", (_, res) => {
-  Boat.find({})
+  BoatService.readAllBoats()
     .then((boats) => res.json(boats))
     .catch((err) => {
       console.log(err);
@@ -27,8 +26,7 @@ app.get("/api/v1/boats", (_, res) => {
 // GET one boat
 app.get("/api/v1/boats/:boatId", (req, res) => {
   const boatId = req.params.boatId;
-
-  Boat.findById(boatId)
+  BoatService.readBoatById(boatId)
     .then((foundBoat) => res.json(foundBoat))
     .catch((err) => {
       console.log(err);
@@ -60,7 +58,7 @@ app.post(
       boatType: req.body.boatType,
     };
 
-    Boat.create(newBoat)
+    BoatService.createBoat(newBoat)
       .then((addedBoat) => res.json(addedBoat || {}))
       .catch((err) => {
         console.log(err);
@@ -96,7 +94,7 @@ app.patch(
 
     // By default, findOneAndUpdate() returns the document as it was before update was applied.
     // You should set the new option to true to return the document after update was applied.
-    Boat.findByIdAndUpdate(boatId, updateBoatInfo, { new: true })
+    BoatService.updateBoat(boatId, updateBoatInfo)
       .then((updatedBoat) => res.json(updatedBoat || {}))
       .catch((err) => {
         console.log(err);
@@ -111,7 +109,7 @@ app.patch(
 app.delete("/api/v1/boats/:boatId", (req, res) => {
   const boatId = req.params.boatId;
 
-  Boat.findByIdAndDelete(boatId)
+  BoatService.deleteBoat(boatId)
     .then((deletedBoat) => res.json(deletedBoat || {}))
     .catch((err) => {
       console.log(err);
@@ -124,7 +122,7 @@ app.delete("/api/v1/boats/:boatId", (req, res) => {
 //* Endpoints Reservations
 // GET all reservations
 app.get("/api/v1/reservations", (_, res) => {
-  Reservation.find({})
+  ReservationService.readAllReservations()
     .then((reservations) => res.json(reservations))
     .catch((err) => {
       console.log(err);
@@ -151,7 +149,7 @@ app.post(
       endDate: req.body.endDate,
     };
 
-    Reservation.create(newReservation)
+    ReservationService.createReservation(newReservation)
       .then((addedReservation) => res.json(addedReservation || {}))
       .catch((err) => {
         console.log(err);
@@ -180,9 +178,7 @@ app.patch(
 
     // By default, findOneAndUpdate() returns the document as it was before update was applied.
     // You should set the new option to true to return the document after update was applied.
-    Reservation.findByIdAndUpdate(reservationId, updateReservationInfo, {
-      new: true,
-    })
+    ReservationService.updatedReservation(reservationId, updateReservationInfo)
       .then((updatedReservation) => res.json(updatedReservation || {}))
       .catch((err) => {
         console.log(err);
@@ -197,7 +193,7 @@ app.patch(
 app.delete("/api/v1/reservations/:reservationId", (req, res) => {
   const reservationId = req.params.reservationId;
 
-  Reservation.findByIdAndDelete(reservationId)
+  ReservationService.deleteReservation(reservationId)
     .then((deletedReservation) => res.json(deletedReservation || {}))
     .catch((err) => {
       console.log(err);
