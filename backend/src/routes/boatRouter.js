@@ -1,6 +1,6 @@
 import express from "express";
 import { BoatsController } from "../controllers/boatsController.js";
-import { body, param, validationResult } from "express-validator";
+import { body } from "express-validator";
 
 export const boatRouter = express
   .Router()

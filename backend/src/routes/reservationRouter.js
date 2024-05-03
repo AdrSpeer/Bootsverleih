@@ -1,6 +1,6 @@
 import express from "express";
 import { ReservationsController } from "../controllers/reservationsController.js";
-import { body, param, validationResult } from "express-validator";
+import { body } from "express-validator";
 
 export const reservationRouter = express
   .Router()
