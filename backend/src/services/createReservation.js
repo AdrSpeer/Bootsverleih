@@ -1,5 +1,6 @@
 import { Reservation } from "../models/Reservations.js";
 
-export function createReservation(newReservation) {
-  return Reservation.create(newReservation);
+export async function createReservation(newReservation) {
+  const createdReservation = await Reservation.create(newReservation);
+  return createdReservation;
 }

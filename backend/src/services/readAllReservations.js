@@ -1,5 +1,6 @@
 import { Reservation } from "../models/Reservations.js";
 
-export function readAllReservations() {
-  return Reservation.find({});
+export async function readAllReservations() {
+  const allReservations = await Reservation.find({});
+  return allReservations;
 }

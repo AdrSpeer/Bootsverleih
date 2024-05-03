@@ -1,11 +1,7 @@
 import { Boat } from "../models/Boats.js";
 
-export function createBoat(newBoat) {
-  return Boat.findOne({ boatName: newBoat.boatName }).then((foundBoat) => {
-    if (foundBoat) {
-      throw new Error("Boat with this name already exists");
-    } else {
-      return Boat.create(newBoat);
-    }
-  });
+export async function createBoat(newBoat) {
+  const foundBoat = await Boat.findOne({ boatName: newBoat.boatName });
+  if (foundBoat) throw new Error("Boat with this name already exists");
+  return Boat.create(newBoat);
 }

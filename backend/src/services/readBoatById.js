@@ -1,5 +1,6 @@
 import { Boat } from "../models/Boats.js";
 
-export function readBoatById(boatId) {
-  return Boat.findById(boatId);
+export async function readBoatById(boatId) {
+  const boatById = await Boat.findById(boatId);
+  return boatById;
 }

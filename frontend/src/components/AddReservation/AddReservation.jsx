@@ -36,7 +36,7 @@ const AddReservation = () => {
       boatId,
     };
 
-    fetch(`${backendURL}/api/v1/boats/${boatId}/reservations`, {
+    fetch(`${backendURL}/api/v1/reservations/${boatId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newReservation),
