@@ -19,7 +19,7 @@ app.use("/api/v1/reservations", reservationRouter);
 // connection to database via connectDb.js
 try {
   await connectToDatabase();
-  const PORT = 3003;
+  const PORT = process.env.PORT || 3003;
   app.listen(PORT, () => console.log("Server listening at PORT", PORT));
 } catch (err) {
   console.log(err);
