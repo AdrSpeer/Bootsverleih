@@ -3,7 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import { connectToDatabase } from "./models/connectDb.js";
 import { boatRouter } from "./routes/boatRouter.js";
-import { reservationRouter } from "./routes/reservationrouter.js";
+import { reservationRouter } from "./routes/reservationRouter.js";
 
 const app = express();
 
