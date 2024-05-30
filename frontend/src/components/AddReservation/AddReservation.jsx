@@ -16,6 +16,8 @@ const AddReservation = () => {
 
   // states for input fields
   const [startDate, setStartDate] = useState("");
+  const [reservationName, setReservationName] = useState("");
+  const [reservationNumber, setReservationNumber] = useState("");
   const [endDate, setEndDate] = useState("");
   const [boatId, setBoatId] = useState("");
 
@@ -34,6 +36,8 @@ const AddReservation = () => {
       startDate,
       endDate,
       boatId,
+      reservationName,
+      reservationNumber,
     };
 
     fetch(`${backendURL}/api/v1/reservations/${boatId}`, {
@@ -62,6 +66,20 @@ const AddReservation = () => {
         required
         onChange={(e) => setEndDate(e.target.value)}
         value={endDate}
+      />
+      <input
+        type="text"
+        required
+        onChange={(e) => setReservationName(e.target.value)}
+        value={reservationName}
+        placeholder="Kundenname"
+      />
+      <input
+        type="text"
+        required
+        onChange={(e) => setReservationNumber(e.target.value)}
+        value={reservationNumber}
+        placeholder="Reservierungsnummer"
       />
 
       <select

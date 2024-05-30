@@ -22,6 +22,8 @@ async function postCreateReservationCtrl(req, res) {
       boatId: req.params.boatId,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
+      reservationName: req.body.reservationName,
+      reservationNumber: req.body.reservationNumber,
     };
     const addedReservation = await ReservationService.createReservation(
       newReservation
@@ -43,6 +45,8 @@ async function patchUpdateReservationCtrl(req, res) {
     const updateReservationInfo = {
       startDate: req.body.startDate,
       endDate: req.body.endDate,
+      reservationName: req.body.reservationName,
+      reservationNumber: req.body.reservationNumber,
     };
     const updatedReservation = await ReservationService.updatedReservation(
       reservationId,
