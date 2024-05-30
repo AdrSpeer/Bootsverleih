@@ -19,11 +19,25 @@ const ReservationCard = ({ reservation }) => {
   console.log(boatDetails);
   return (
     <div className="reservation-card">
-      <p>Vom {new Date(reservation.startDate).toLocaleDateString()}</p>
-      <p>bis {new Date(reservation.endDate).toLocaleDateString()}</p>
+      <p>
+        <span>Startdatum: </span>
+        {new Date(reservation.startDate).toLocaleDateString()}
+      </p>
+      <p>
+        <span>Enddatum: </span>
+        {new Date(reservation.endDate).toLocaleDateString()}
+      </p>
       <Link to={`/boats/${reservation.boatId}`}>
-        <p>{boatDetails?.boatName}</p>
+        <p>
+          <span>Bootsname: </span> {boatDetails?.boatName}
+        </p>
       </Link>
+      <p>
+        <span>Buchungsname: </span> {reservation.reservationName}
+      </p>
+      <p>
+        <span>Buchungsnummer: </span> {reservation.reservationNumber}
+      </p>
       <div className="change-res">
         <DeleteReservation reservationId={reservation._id} />
         <EditReservation reservation={reservation} />

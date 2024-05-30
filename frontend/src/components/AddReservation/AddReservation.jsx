@@ -1,3 +1,4 @@
+import "./AddReservation.css";
 import { useContext, useState } from "react";
 import { backendURL } from "../../api/api";
 import {
@@ -20,6 +21,7 @@ const AddReservation = () => {
   const [reservationNumber, setReservationNumber] = useState("");
   const [endDate, setEndDate] = useState("");
   const [boatId, setBoatId] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   // state for error message
   const [error, setError] = useState("");
@@ -51,56 +53,57 @@ const AddReservation = () => {
   };
 
   return (
-    <form className="boat-form">
-      <h2>Reservierung hinzufügen</h2>
+    <section className="add-res-wrapper">
+      <h2 onClick={() => setShowForm(!showForm)}>Reservierung hinzufügen</h2>
+      <form className={showForm ? "res-form" : "hide-res-form"}>
+        <input
+          type="date"
+          required
+          onChange={(e) => setStartDate(e.target.value)}
+          value={startDate}
+        />
 
-      <input
-        type="date"
-        required
-        onChange={(e) => setStartDate(e.target.value)}
-        value={startDate}
-      />
+        <input
+          type="date"
+          required
+          onChange={(e) => setEndDate(e.target.value)}
+          value={endDate}
+        />
+        <input
+          type="text"
+          required
+          onChange={(e) => setReservationName(e.target.value)}
+          value={reservationName}
+          placeholder="Kundenname"
+        />
+        <input
+          type="text"
+          required
+          onChange={(e) => setReservationNumber(e.target.value)}
+          value={reservationNumber}
+          placeholder="Reservierungsnummer"
+        />
 
-      <input
-        type="date"
-        required
-        onChange={(e) => setEndDate(e.target.value)}
-        value={endDate}
-      />
-      <input
-        type="text"
-        required
-        onChange={(e) => setReservationName(e.target.value)}
-        value={reservationName}
-        placeholder="Kundenname"
-      />
-      <input
-        type="text"
-        required
-        onChange={(e) => setReservationNumber(e.target.value)}
-        value={reservationNumber}
-        placeholder="Reservierungsnummer"
-      />
+        <select
+          name="boat"
+          id="boat"
+          required
+          onChange={(e) => setBoatId(e.target.value)}
+          value={boatId}
+        >
+          <option value="">Welches Boot?</option>
+          {allBoats.map((boat) => (
+            <option key={boat._id} value={boat._id}>
+              {boat.boatName}
+            </option>
+          ))}
+        </select>
 
-      <select
-        name="boat"
-        id="boat"
-        required
-        onChange={(e) => setBoatId(e.target.value)}
-        value={boatId}
-      >
-        <option value="">Welches Boot?</option>
-        {allBoats.map((boat) => (
-          <option key={boat._id} value={boat._id}>
-            {boat.boatName}
-          </option>
-        ))}
-      </select>
+        {error.length > 0 ? <p>{error}</p> : ""}
 
-      {error.length > 0 ? <p>{error}</p> : ""}
-
-      <button onClick={addReservation}>Reservierung hinzufügen</button>
-    </form>
+        <button onClick={addReservation}>Reservierung hinzufügen</button>
+      </form>
+    </section>
   );
 };
 

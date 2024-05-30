@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import "./EditReservation.css";
 import { backendURL } from "../../api/api";
 import {
   fetchAllBoatsContext,
@@ -13,6 +14,8 @@ const EditReservation = ({ reservation }) => {
   // states for input fields
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [reservationName, setReservationName] = useState("");
+  const [reservationNumber, setReservationNumber] = useState("");
 
   // state for error message
   const [error, setError] = useState("");
@@ -36,6 +39,8 @@ const EditReservation = ({ reservation }) => {
     const updatedReservation = {
       startDate,
       endDate,
+      reservationName,
+      reservationNumber,
     };
 
     fetch(`${backendURL}/api/v1/reservations/${reservation._id}`, {
@@ -82,6 +87,20 @@ const EditReservation = ({ reservation }) => {
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
+        />
+        <input
+          type="text"
+          required
+          onChange={(e) => setReservationName(e.target.value)}
+          value={reservationName}
+          placeholder="Kundenname"
+        />
+        <input
+          type="text"
+          required
+          onChange={(e) => setReservationNumber(e.target.value)}
+          value={reservationNumber}
+          placeholder="Reservierungsnummer"
         />
 
         {error.length > 0 ? <p>{error}</p> : ""}

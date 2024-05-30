@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import EditBoat from "../../components/EditBoat/EditBoat";
 const AllBoats = () => {
   const { allBoats, setAllBoats } = useContext(fetchAllBoatsContext);
-
+  const [showForm, setShowForm] = useState(false);
   return (
     <>
+      <AddBoat />
       <section className="all-boats">
         {/* Show all boats */}
         {allBoats?.map((boat) => (
@@ -35,7 +36,6 @@ const AllBoats = () => {
 
         {/* form to add a boat */}
       </section>
-      <AddBoat />
     </>
   );
 };

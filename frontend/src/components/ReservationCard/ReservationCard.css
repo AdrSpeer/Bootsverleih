@@ -1,9 +1,9 @@
 .reservation-card {
   /* width: 400px; */
-  max-width: 600px;
+  max-width: 40vw;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 0.5fr, 0.5fr 1fr 2fr 1fr 0.5fr;
+  gap: 1vw;
 
   background-color: #bde0fe;
   padding: 1rem;
@@ -11,9 +11,12 @@
 
   margin-bottom: 1rem;
 }
+.reservation-card span {
+  font-weight: 800;
+}
 
 .change-res {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }

@@ -1,6 +1,18 @@
 .boat-form h2 {
   text-align: center;
 }
+.boat-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boat-form input,
+select {
+  width: 20vw;
+}
+.boat-form button {
+  width: 15vw;
+}
 
 .add-boat-wrapper {
   display: flex;

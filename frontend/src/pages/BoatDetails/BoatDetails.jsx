@@ -36,24 +36,25 @@ const BoatDetails = () => {
         <img src="/img/seegelboot.jpeg" alt="Segelboot" />
         <section>
           <article>
-            <h2>{boatDetails.boatName}</h2>
-            <p>Typ: {boatDetails.boatType}</p>
-            <p>Material: {boatDetails.material}</p>
-            <p>Baujahr: {boatDetails.constructionYear}</p>
-            <p>Seriennummer: {boatDetails.serialNumber}</p>
+            <h2>{boatDetails?.boatName}</h2>
+            <p>Typ: {boatDetails?.boatType}</p>
+            <p>Material: {boatDetails?.material}</p>
+            <p>Baujahr: {boatDetails?.constructionYear}</p>
+            <p>Seriennummer: {boatDetails?.serialNumber}</p>
 
             <div>
-              <DeleteBoat boatId={boatDetails._id} />
+              <DeleteBoat boatId={boatDetails?._id} />
               <EditBoat boat={boatDetails} />
             </div>
           </article>
-
-          <h2>Reservierungen</h2>
-          {boatReservations?.map((item) => (
-            <ReservationCard key={item._id} reservation={item} />
-          ))}
         </section>
       </section>
+      <div>
+        <h2>Reservierungen</h2>
+        {boatReservations?.map((item) => (
+          <ReservationCard key={item?._id} reservation={item} />
+        ))}
+      </div>
     </>
   );
 };

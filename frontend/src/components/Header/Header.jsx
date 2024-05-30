@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+
 import "./Header.css";
 const Header = () => {
   return (
@@ -7,6 +8,7 @@ const Header = () => {
         <NavLink to={"/"}>
           <h2>Boaty</h2>
         </NavLink>
+
         <div className="nav-right">
           <NavLink to={"/boats"}>
             <svg

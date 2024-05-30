@@ -6,5 +6,6 @@ export async function updatedReservation(reservationId, updateReservationInfo) {
     { $set: updateReservationInfo },
     { new: true }
   );
+
   return updatedReservation;
 }
