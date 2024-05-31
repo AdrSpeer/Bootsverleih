@@ -27,7 +27,8 @@ function App() {
       .then((data) => setAllReservations(data))
       .catch((err) => console.log("Failed to fetch all boats", err));
   }, []);
-
+  console.log(allBoats);
+  console.log(allReservations);
   return (
     <>
       <fetchAllBoatsContext.Provider value={{ allBoats, setAllBoats }}>

@@ -61,7 +61,7 @@ const EditBoat = ({ boat }) => {
   const showEditWithInputs = () => {
     setShowEdit(!showEdit);
 
-    setName(boat.boatName);
+    setName(boat?.boatName);
     setTyp(boat?.boatType);
     setMaterial(boat?.material);
     setBaujahr(boat?.constructionYear);

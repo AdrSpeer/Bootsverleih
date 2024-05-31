@@ -14,7 +14,7 @@ const BoatDetails = () => {
   const { allReservations, setAllReservations } = useContext(
     fetchAllReservationsContext
   );
-
+  console.log(boatId);
   useEffect(() => {
     const filterReservations = allReservations.filter(
       (reservation) => reservation.boatId === boatDetails._id

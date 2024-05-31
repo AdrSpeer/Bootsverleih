@@ -91,7 +91,9 @@ const AddReservation = () => {
           onChange={(e) => setBoatId(e.target.value)}
           value={boatId}
         >
-          <option value="">Welches Boot?</option>
+          <option required value="">
+            Welches Boot?
+          </option>
           {allBoats.map((boat) => (
             <option key={boat._id} value={boat._id}>
               {boat.boatName}
