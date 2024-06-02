@@ -8,38 +8,38 @@ import DeleteReservation from "../DeleteReservation/DeleteReservation";
 const ReservationCard = ({ reservation }) => {
   // state for boat details
   const [boatDetails, setBoatDetails] = useState([]);
-  console.log(reservation);
+
   // fetch boat details (to get boatName and boatImg)
   useEffect(() => {
     fetch(`${backendURL}/api/v1/boats/${reservation?.boatId}`)
       .then((res) => res.json())
       .then((data) => setBoatDetails(data))
       .catch((err) => console.log("Failed to fetch Boat Details", err));
-  }, []);
-  console.log(boatDetails);
+  }, [reservation?.boatId]);
+
   return (
     <div className="reservation-card">
       <p>
         <span>Startdatum: </span>
-        {new Date(reservation.startDate).toLocaleDateString()}
+        {new Date(reservation?.startDate).toLocaleDateString()}
       </p>
       <p>
         <span>Enddatum: </span>
-        {new Date(reservation.endDate).toLocaleDateString()}
+        {new Date(reservation?.endDate).toLocaleDateString()}
       </p>
-      <Link to={`/boats/${reservation.boatId}`}>
+      <Link to={`/boats/${reservation?.boatId}`}>
         <p>
           <span>Bootsname: </span> {boatDetails?.boatName}
         </p>
       </Link>
       <p>
-        <span>Buchungsname: </span> {reservation.reservationName}
+        <span>Buchungsname: </span> {reservation?.reservationName}
       </p>
       <p>
-        <span>Buchungsnummer: </span> {reservation.reservationNumber}
+        <span>Buchungsnummer: </span> {reservation?.reservationNumber}
       </p>
       <div className="change-res">
-        <DeleteReservation reservationId={reservation._id} />
+        <DeleteReservation reservationId={reservation?._id} />
         <EditReservation reservation={reservation} />
       </div>
     </div>
